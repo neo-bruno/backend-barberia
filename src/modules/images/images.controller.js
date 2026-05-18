@@ -22,6 +22,7 @@ exports.uploadLogo = async (req, res) => {
     // 🔥 URL IMAGEN
     // =====================================================
     const logo = `${req.protocol}://${req.get('host')}/uploads/negocios/${req.file.filename}`;
+    // const logo = `http://peluqueria.emsofe.com/uploads/negocios/${req.file.filename}`;
 
     // =====================================================
     // 🔥 GUARDAR EN DB
@@ -62,6 +63,7 @@ exports.uploadPortada = async (req, res) => {
 
     const negocio_id = req.user.negocio_id;
     const portada_url = `${req.protocol}://${req.get('host')}/uploads/negocios/${req.file.filename}`;
+    // const portada_url = `http://peluqueria.emsofe.com/uploads/negocios/${req.file.filename}`;
 
     await service.updatePortada(
       negocio_id,
@@ -92,7 +94,8 @@ exports.uploadGaleria = async (req, res) => {
     const { id } = req.params;
     const negocio_id = req.user.negocio_id;
 
-    const imagen_url = `${req.protocol}://${req.get('host')}/uploads/negocios/${req.file.filename}`;
+    const imagen_url = `${req.protocol}://${req.get('host')}/uploads/negocios/${req.file.filename}`;    
+    // const imagen_url = `http://peluqueria.emsofe.com/uploads/negocios/${req.file.filename}`;
 
     // 🔥 ahora es UPDATE en vez de CREATE
     const galeria = await service.updateGaleria(

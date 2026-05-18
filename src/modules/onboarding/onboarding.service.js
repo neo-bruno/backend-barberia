@@ -57,6 +57,38 @@ exports.createOnboarding = async (body) => {
     const negocioDB = negocioRes.rows[0];
 
     // =========================
+    // GALERIA POR DEFECTO
+    // =========================
+
+    const galeriaDefault = [
+      {
+        imagen_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2JN_O_wn_Syn3ld-iQS0f96eZv2_jBzXAuQ&s',
+        titulo: 'cortes de pelos'
+      },
+      {
+        imagen_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZm0wrNJ2JaWhrbNykmFXmuPAkTOC72NZ3zg&s',
+        titulo: 'corte de pelo'
+      },
+      {
+        imagen_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh6ecNx9ufTRgZDjPEg_mphDYGxPg25F-tlw&s',
+        titulo: 'corte de pelo y barba'
+      }
+    ];
+
+    for (const item of galeriaDefault) {
+      await client.query(`
+        INSERT INTO galeria (negocio_id, imagen_url, titulo)
+        VALUES ($1,$2,$3)
+        `,
+        [
+          negocioDB.id,
+          item.imagen_url,
+          item.titulo
+        ]
+      );
+    }
+
+    // =========================
     // HASH PASSWORD
     // =========================
 
